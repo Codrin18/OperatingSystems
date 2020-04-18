@@ -1,0 +1,11 @@
+#!/bin/bash
+
+file=$1
+tmpfile=$(mktemp) 
+
+for param in "$@"; do
+	if [ ! -f "$param" ]; then 
+		cat $file | sed -e "s/\<$param\>//g" $file > ${tmpfile}
+		cat ${tmpfile} > $file
+	fi		
+done

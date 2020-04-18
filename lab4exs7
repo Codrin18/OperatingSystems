@@ -1,0 +1,8 @@
+#1/bin/bash
+
+tmpfile=$(mktemp)
+
+for file in "$@"; do
+	cat $file | sed 'y/aeiouAEIOU/AEIOUaeiou/' $file > ${tmpfile}
+	cat ${tmpfile} > $file
+done
