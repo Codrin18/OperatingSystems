@@ -24,7 +24,11 @@ int isPrime(int n)
 
 int main()
 {
-	int n = 50;
+	int n = 0;
+
+	printf("Enter the number: ");
+
+	scanf("%d",&n);
 	
 	printf("The number is %d\n", n);	
 
@@ -34,7 +38,7 @@ int main()
 		{
 			int process = fork();
 			
-			if (process)
+			if (process > 0)
 			{
 				if (n % i != 0) return 0;
 				
