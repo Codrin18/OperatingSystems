@@ -4,20 +4,22 @@
 
 int main()
 {
-	char input_str[30];
+	
+	char input_str[30] = { '\0' };
 
 	printf("Enter your input: ");
 	fgets(input_str,30,stdin);
 
+
 	int fd1[2]; //  1-2 diagram 
 	pipe(fd1); // create pipe descriptors
 	int process1 = fork(); // create first process
-	
+	write(fd1[1], &input_str, 30);	
 	// Child process 
 	if (process1 > 0)
 	{
 		char new_str[30];
-		
+
 		read(fd1[0],&new_str,30);
 		
 		printf("Child process 1: %s\n", new_str);
